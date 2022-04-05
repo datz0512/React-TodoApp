@@ -1,9 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-const CourseInput = () => {
+const CourseInput = (props) => {
+    const [enteredValue, setEnteredValue] = useState('')
+    
+
     return (
         <form>
-            
+            <div>
+                <label></label>
+            </div>
         </form>
     )
 }

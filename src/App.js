@@ -13,19 +13,19 @@ const App = () => {
     setCourseGoals = prevGoals => {
       const updatedGoals = [...prevGoals]
       updatedGoals.unshift({text:enteredText, id:Math.random().toString()})
+      return updatedGoals
     }
-    return updatedGoals
   } 
 
   const deleteItemHandler = goalId => {
     setCourseGoals(prevGoals => {
       const updatedGoals = prevGoals.filter(goal => goal.id !== goalId)
+      return updatedGoals
     })
-    return updatedGoals
   }
 
   let content = (
-    <p style={{textAlign:center}}>No goal found! Maybe add one?</p>
+    <p style={{textAlign:'center'}}>No goal found! Maybe add one?</p>
   )
 
   if(courseGoals.length() > 0){
@@ -38,12 +38,13 @@ const App = () => {
         <CourseInput onAddGoal={AddGoalHandler} />
       </section>
       <section id='goals'>
-        <content />
+        {content}
       </section>
     </div>
   )
 }
 
+export default App
 
 
 

@@ -1,45 +1,49 @@
-import { useRef } from "react";
-import { useStore, actions } from "./Store";
+import React, { useState } from 'react'
+import CourseGoalList from './components/CourseGoals/CourseGoalList/CourseGoalList'
+import CourseGoalItem from './components/CourseGoals/CourseGoalItem/CourseGoalItem'
+import CourseInput from './components/CourseGoals/CourseInput/CourseInput'
 
-function App(){
-  const [state, dispatch] = useStore()
-  const { todos, todoInput } = state
+const App = () => {
+  const [courseGoals, setCourseGoals] = useState([
+    { text: 'Do all exercises!', id:'g1'},
+    { text: 'Do all exercises!', id:'g1'}
+  ])
 
-  const inputRef = useRef()
+  const AddGoalHandler = (enteredText) => {
+    setCourseGoals = prevGoals => {
+      const updatedGoals = [...prevGoals]
+      updatedGoals.unshift({text:enteredText, id:Math.random().toString()})
+    }
+    return updatedGoals
+  } 
 
-  const handleAdd = () => {
-    dispatch(actions.addTodo(todoInput))
-    dispatch(actions.setTodoInput(''))
-    inputRef.current.focus()
+  const deleteItemHandler = goalId => {
+    setCourseGoals(prevGoals => {
+      const updatedGoals = prevGoals.filter(goal => goal.id !== goalId)
+    })
+    return updatedGoals
   }
-  
-  return(
-    <div style={{padding: 50}}>
-      <input 
-        style={{marginBottom: 20}}
-        ref={inputRef}
-        value={todoInput}
-        placeholder='Enter todo...'
-        onChange={e => {
-          dispatch(actions.setTodoInput(e.target.value))
-        }}
-      />
-    
-      <button onClick={handleAdd}>Add</button>
 
-      {todos.map((todo, index) => (
-        <li style={{listStyleType:'none', marginBottom:10}} key={index}>
-          {index+1}
-          .&ensp;
-          {todo}
-          &ensp;
-          <button onClick={() => dispatch(actions.deleteTodo(index))}>Xoa</button>
-        </li>
-      ))}
+  let content = (
+    <p style={{textAlign:center}}>No goal found! Maybe add one?</p>
+  )
+
+  if(courseGoals.length() > 0){
+    <CourseGoalList items={courseGoals} onDeleteItem={deleteItemHandler}/>
+  }
+
+  return (
+    <div>
+      <section id='goal-form'>
+        <CourseInput onAddGoal={AddGoalHandler} />
+      </section>
+      <section id='goals'>
+        <content />
+      </section>
     </div>
   )
 }
 
-export default App;
+
 
 

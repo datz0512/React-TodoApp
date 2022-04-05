@@ -24,7 +24,7 @@ function App(){
           dispatch(actions.setTodoInput(e.target.value))
         }}
       />
-
+    
       <button onClick={handleAdd}>Add</button>
 
       {todos.map((todo, index) => (

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import CourseGoalList from './components/CourseGoals/CourseGoalList/CourseGoalList'
-import CourseGoalItem from './components/CourseGoals/CourseGoalItem/CourseGoalItem'
 import CourseInput from './components/CourseGoals/CourseInput/CourseInput'
 
 const App = () => {
@@ -28,7 +27,7 @@ const App = () => {
     <p style={{textAlign:'center'}}>No goal found! Maybe add one?</p>
   )
 
-  if(courseGoals.length() > 0){
+  if(courseGoals.lengthc > 0){
     <CourseGoalList items={courseGoals} onDeleteItem={deleteItemHandler}/>
   }
 

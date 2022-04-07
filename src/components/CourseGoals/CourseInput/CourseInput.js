@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Button from '../../UI/Button/Button'
 
 const CourseInput = (props) => {
     const [enteredValue, setEnteredValue] = useState('')
-    
+
     const goalInputChangeHandler = event => {
         setEnteredValue(event.target.value)
     }

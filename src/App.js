@@ -5,15 +5,15 @@ import CourseInput from './components/CourseGoals/CourseInput/CourseInput'
 const App = () => {
   const [courseGoals, setCourseGoals] = useState([
     { text: 'Do all exercises!', id:'g1'},
-    { text: 'Do all exercises!', id:'g1'}
+    { text: 'Finish the course!', id:'g2'}
   ])
 
   const AddGoalHandler = (enteredText) => {
-    setCourseGoals = prevGoals => {
+    setCourseGoals(prevGoals => {
       const updatedGoals = [...prevGoals]
       updatedGoals.unshift({text:enteredText, id:Math.random().toString()})
       return updatedGoals
-    }
+    })
   } 
 
   const deleteItemHandler = goalId => {
@@ -27,8 +27,8 @@ const App = () => {
     <p style={{textAlign:'center'}}>No goal found! Maybe add one?</p>
   )
 
-  if(courseGoals.lengthc > 0){
-    <CourseGoalList items={courseGoals} onDeleteItem={deleteItemHandler}/>
+  if(courseGoals.length > 0){
+    content=(<CourseGoalList items={courseGoals} onDeleteItem={deleteItemHandler}/>)
   }
 
   return (

@@ -7,7 +7,9 @@ const CourseInput = (props) => {
     return (
         <form>
             <div>
-                <label></label>
+                <label>
+                    
+                </label>
             </div>
         </form>
     )

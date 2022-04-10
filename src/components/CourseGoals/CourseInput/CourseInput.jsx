@@ -21,6 +21,7 @@ const CourseInput = (props) => {
             return
         }
         props.onAddGoal(enteredValue)
+        setEnteredValue('')
         inputRef.current.focus()
     }
 
